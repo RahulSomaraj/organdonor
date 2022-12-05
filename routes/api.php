@@ -36,7 +36,7 @@ use App\Http\Controllers\LoginController;
 
 
 Route::controller(AuthController::class)->group(function () {
-    Route::post('login', 'login')->middleware('cors');;
+    Route::post('login', 'login');
     Route::post('register', 'register');
     Route::post('logout', 'logout');
     Route::post('refresh', 'refresh');
