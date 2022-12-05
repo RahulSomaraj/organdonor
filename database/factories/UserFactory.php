@@ -14,10 +14,12 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $array = array('Admin', 'Doctor', 'User');
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'userType' => $array[array_rand($array,1)],
             'password' => bcrypt('Rahul'), // password
             'remember_token' => Str::random(10),
         ];

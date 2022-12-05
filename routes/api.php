@@ -22,22 +22,31 @@ use App\Http\Controllers\LoginController;
 //     return $request->user();
 // });
 
-
-// Route::group([
-//     'middleware' => 'api',
-//     'namespace' => 'App\Http\Controllers',
-//     'prefix' => 'auth'
-// ], function($router) {
+// Route::middleware('auth:api')->get('user', function(Request $request) {
+//     return $request->user();
 // });
-// Route::get('login',[LoginController::class, 'login']);
 
-
-Route::post('login', [AuthController::class, 'login']);
-// Route::post('/register', 'AuthController@register');
-// Route::post('/logout', 'AuthController@logout');
+// Route::post('login', [AuthController::class, 'login']);
+// Route::post('register', [AuthController::class, 'register']);
+// Route::post('logout', [AuthController::class, 'logout']);
 // Route::post('/profile', 'AuthController@profile');
 // Route::post('/refresh', 'AuthController@refresh');
 
 // Route::resource('blogs', BlogController::class);
 
+
+Route::controller(AuthController::class)->group(function () {
+    Route::post('login', 'login')->middleware('cors');;
+    Route::post('register', 'register');
+    Route::post('logout', 'logout');
+    Route::post('refresh', 'refresh');
+});
+
+// Route::controller(TodoController::class)->group(function () {
+//     Route::get('todos', 'index');
+//     Route::post('todo', 'store');
+//     Route::get('todo/{id}', 'show');
+//     Route::put('todo/{id}', 'update');
+//     Route::delete('todo/{id}', 'destroy');
+// }); 
 

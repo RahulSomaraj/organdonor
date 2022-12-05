@@ -34,13 +34,13 @@ class AuthController extends Controller
 
         $user = Auth::user();
         return response()->json([
-                'status' => 'success',
-                'user' => $user,
-                'authorisation' => [
-                    'token' => $token,
-                    'type' => 'bearer',
-                ]
-            ]);
+            'status' => 'success',
+            'user' => $user,
+            'authorisation' => [
+                'token' => $token,
+                'type' => 'bearer',
+            ]
+        ]);
 
     }
 
@@ -49,12 +49,17 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'userType' => 'in:Admin,Doctor,User'
         ]);
+
+        error_log($request->userType);
+        error_log('$request->userType');
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'userType' => $request->userType
         ]);
 
         $token = Auth::login($user);

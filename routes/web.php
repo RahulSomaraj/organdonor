@@ -24,9 +24,9 @@ use App\Http\Controllers\LoginController;
 //     }]);
 // });
 
-Route::get('/', function () {
-    return 'Hello home';
-});
+// Route::get('/', function () {
+//     return 'Hello home';
+// });
 
 // Route::post('/login', [LoginController::class, 'login'])->name('users.login');
 
